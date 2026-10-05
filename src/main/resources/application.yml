@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: galaxbank
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/galaxbank
+    username: postgres
+    password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto:validate
+    open-in-view: false
+    properties:
+      hibernate:
+        formate-sql: true
+
+  flyway:
+    enable: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+jwt:
+  private-key: ${jwt_private_key}
+  public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Rtm1o7yTqlyk838riR0yu31/FmZ4qpPkum31U2u+GJ6YHJvIi1o9/HGcSHpIoLlJaJFih75076JVir07WFXLdS0VIjlN/7qTiFCOBIm/rnDcM8ohCWJsuaLkJhl6IIfKGrkgT58U7zsdZXjn8/ruuNnW3u8zn2MXQ5DuUOPI8oNuD2ZfWV3eA89q9FNIhoPeBIv4vKeTJjyqYgdxJ+Fr17Z98o+Yf6L6hOLzsYQDv0hdMvnDwzlNcXYd8uiTKPB0e0T5ctlyapaeIPI2qrXPWOvNdMfqAlvYdcnTozBilu8ii9ogNlo1MsrrXqiDo7vkAhLCKwzHOM0BfMtkFKEyQIDAQAB
+  expiration-ms: 86400000

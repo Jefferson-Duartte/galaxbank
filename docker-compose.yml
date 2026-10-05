@@ -1,0 +1,27 @@
+services:
+  galaxbank-db:
+    image: postgres:16-alpine
+    container_name: galaxbank-db
+    environment:
+      POSTGRES_DB: galaxbank
+      POSTGRES_USER: galaxbank
+      POSTGRES_PASSWORD: galaxbank
+    ports:
+      - "5432:5432"
+    volumes:
+      - galaxbank-data:/var/lib/postgresql/data
+
+  galaxbank-app:
+    build: .
+    container_name: galaxbank-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://galaxbank-db:5432/galaxbank
+      SPRING_DATASOURCE_USERNAME: galaxbank
+      SPRING_DATASOURCE_PASSWORD: galaxbank
+    depends_on:
+      - galaxbank-db
+
+volumes:
+  galaxbank-data:
