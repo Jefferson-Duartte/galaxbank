@@ -12,7 +12,7 @@ public interface AccountRepository extends JpaRepository<Account, UUID> {
 
     Optional<Account> findByUserId(UUID userId);
 
-    Optional<Account> findByNumber(String accountNumber);
+    Optional<Account> findByNumber(String number);
 
-    boolean existsByNumber(String accountNumber);
+    boolean existsByNumber(String number);
 }
