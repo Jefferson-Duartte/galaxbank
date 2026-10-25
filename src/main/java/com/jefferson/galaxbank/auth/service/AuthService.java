@@ -1,5 +1,6 @@
 package com.jefferson.galaxbank.auth.service;
 
+import com.jefferson.galaxbank.account.service.AccountService;
 import com.jefferson.galaxbank.auth.dto.request.LoginRequest;
 import com.jefferson.galaxbank.auth.dto.request.RegisterRequest;
 import com.jefferson.galaxbank.auth.dto.response.LoginResponse;
@@ -24,6 +25,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final LoginAttemptService loginAttemptService;
+    private final AccountService accountService;
 
     @Transactional
     public void register(RegisterRequest request) {
@@ -50,7 +52,8 @@ public class AuthService {
                 .transactionPassword(passwordEncoder.encode(request.getTransactionPassword()))
                 .build();
 
-        userRepository.save(user);
+        User newUser = userRepository.save(user);
+        accountService.createAccount(newUser);
     }
 
     @Transactional
