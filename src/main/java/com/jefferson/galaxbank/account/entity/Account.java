@@ -27,7 +27,7 @@ public class Account {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user_id;
+    private User user;
 
     @NotBlank
     @Pattern(regexp = "\\d{10}")
